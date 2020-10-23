@@ -4,5 +4,9 @@ git:
   depth: false
   autocrlf: input
 
+os:
+  - linux
+  - osx
+
 script:
   - ./gradlew check
