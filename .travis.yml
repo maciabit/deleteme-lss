@@ -68,10 +68,11 @@ jobs:
       stage: Compile
       script: ./gradlew compileKotlin --parallel
       workspaces:
-        create: *workspace_name
-        paths:
-          - "$TRAVIS_BUILD_DIR"
-          - "$HOME/.gradle"
+        create:
+          name: *workspace_name
+          paths:
+            - "$TRAVIS_BUILD_DIR"
+            - "$HOME/.gradle"
     - <<: *reference_machine
       stage: Kotlin Style Check
       <<: *import_workspace
