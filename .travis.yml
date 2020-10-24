@@ -43,7 +43,8 @@ stages:
   - Compile
   - Kotlin Style Check
   - Check
-  - test
+  - name: test
+    if: "commit_message !~ /\[\s*skip(?: |-|\.)test\s*\].*/"
   - name: Delievry
     if: repo = maciabit/deleteme-lss
 
