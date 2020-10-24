@@ -42,6 +42,8 @@ stages:
   - Kotlin Style Check
   - Check
   - test
+  - name: Delievry
+    if: repo = maciabit/deleteme-lss
 
 _reference_machine: &reference_machine
   arch: *reference_arch
@@ -82,6 +84,8 @@ jobs:
       <<: *import_workspace
       script:
         - travis_retry ./gradlew check
+    - stage: Delivery
+      script: "true"
 
 before_install:
   - travis_retry git clone --depth 1 $GRAVIS_REPO $GRAVIS
