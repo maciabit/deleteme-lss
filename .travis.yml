@@ -44,7 +44,7 @@ stages:
   - Kotlin Style Check
   - Check
   - name: test
-    if: "commit_message !~ /\[\s*skip(?: |-|\.)test\s*\].*/"
+    if: 'commit_message !~ /\[\s*skip(?: |-|\.)test\s*\].*/'
   - name: Delievry
     if: repo = maciabit/deleteme-lss
 
@@ -71,7 +71,7 @@ jobs:
   include:
     - <<: *reference_machine
       stage: Compile
-      script: ./gradlew compileKotlin --parallel
+      script: travis_retry ./gradlew compileKotlin --parallel
       workspaces:
         create:
           name: *workspace_name
@@ -81,7 +81,7 @@ jobs:
     - <<: *reference_machine
       stage: Kotlin Style Check
       <<: *import_workspace
-      script: ./gradlew detekt ktlintCheck --parallel
+      script: travis_retry ./gradlew detekt ktlintCheck --parallel
     - <<: *reference_machine
       stage: Complete Check
       <<: *import_workspace
