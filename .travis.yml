@@ -97,6 +97,12 @@ jobs:
         - travis_retry ./gradlew publishMavenCentralPublicationToMavenRepository
       after_success:
         - ./gradlew publishPlugins -Pgradle.publish.key=$PLUGIN_PORTAL_KEY -Pgradle.publish.secret=$PLUGIN_PORTAL_SECRET
+      deploy:
+        - provider: releases
+          file: 'build/libs/*.jar'
+          edge: true
+          on:
+            all_branches: true
 
 before_install:
   - travis_retry git clone --depth 1 $GRAVIS_REPO $GRAVIS
